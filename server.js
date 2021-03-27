@@ -12,4 +12,8 @@ app.get('/*', (req, res) =>
 );
 
 // Start the app by listening on the default Heroku port
+<<<<<<< HEAD
 app.listen(process.env.PORT || 8080);
+=======
+app.listen(process.env.PORT || 8080);
+>>>>>>> 3a0e7f1bfce73b6ca93a01ec308a26473660488c
