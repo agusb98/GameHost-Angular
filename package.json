@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "heroku-postbuild": "ng build --prod",
-    "postinstall": "ng build --output-path MyApp2021 --aot --prod"
+    "postinstall": "ng build --output-path heroku --aot --prod"
   },
   "private": true,
   "dependencies": {
