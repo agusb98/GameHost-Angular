@@ -1,0 +1,57 @@
+<div class="card">
+  <div class="card-body mt-5">
+    <form #gameForm="ngForm" (ngSubmit)="onSubmit(gameForm)">
+      <input
+        type="hidden"
+        name="$id"
+        #$id="ngModel"
+        [(ngModel)]="gameService.selectedGame.$id"
+      />
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          #name="ngModel"
+          [(ngModel)]="gameService.selectedGame.name"
+          placeholder="Name.."
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          name="category"
+          #category="ngModel"
+          [(ngModel)]="gameService.selectedGame.category"
+          placeholder="Category.."
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          name="url"
+          #url="ngModel"
+          [(ngModel)]="gameService.selectedGame.url"
+          placeholder="Url.."
+        />
+      </div>
+      <div>
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit">
+            <i class="fas fa-plus-circle"></i> Add a Game
+          </button>
+          <br />
+          <button
+            class="btn btn-secondary"
+            type="reset"
+            (click)="resetForm(gameForm)"
+          >
+            <i class="bi bi-bootstrap-reboot"></i> Reset
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

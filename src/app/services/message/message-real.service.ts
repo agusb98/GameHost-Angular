@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database'
-import { Message } from '../../classes/message';
+import { Message } from '../../models/message/message';
 
 @Injectable({
   providedIn: 'root'

@@ -1,26 +1,27 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
-import { Message } from '../../models/message/message'
+import { Game } from '../../models/game/game'
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class MessageFireService {
+export class GameService {
 
-  ruthOfCollection = '/message-fire';
-  referenceToCollection: AngularFirestoreCollection<Message>;
+  ruthOfCollection = '/game';
+  referenceToCollection: AngularFirestoreCollection<Game>;
+  selectedGame: Game = new Game();
 
   constructor(private bd: AngularFirestore) {
     this.referenceToCollection = bd.collection(this.ruthOfCollection);
   }
 
-  Create(message: Message): any {
-    return this.referenceToCollection.add({ ...message });
+  Create(game: Game): any {
+    return this.referenceToCollection.add({ ...game });
   }
 
-  GetAll(): AngularFirestoreCollection<Message> {
+  GetAll(): AngularFirestoreCollection<Game> {
     return this.referenceToCollection;
   }
 

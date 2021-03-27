@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ChatComponent } from '../app/pages/chat/chat.component';
-import { ListComponent } from '../app/pages/list/list.component';
-import { IndexComponent } from './pages/index/index.component';
-import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
-import { UserSigninComponent } from './pages/user/user-signin/user-signin.component';
-import { UserSignupComponent } from './pages/user/user-signup/user-signup.component';
+import { ChatComponent } from '../app/components/chat/chat.component';
+import { GameComponent } from './components/games/game/game.component';
+import { IndexComponent } from './components/index/index.component';
+import { UserProfileComponent } from './components/users/user-profile/user-profile.component';
+import { UserSigninComponent } from './components/users/user-signin/user-signin.component';
+import { UserSignupComponent } from './components/users/user-signup/user-signup.component';
 
 const routes: Routes = [
-  //{ path: '', redirectTo: 'index'},
+  { path: '', redirectTo: 'index', pathMatch: 'full' },
   { path: 'index', component: IndexComponent },
   { path: 'chat', component: ChatComponent },
-  { path: 'list', component: ListComponent },
+  { path: 'games', component: GameComponent },
   { path: 'user/signin', component: UserSigninComponent },
   { path: 'user/signup', component: UserSignupComponent },
   { path: 'user/profile', component: UserProfileComponent }
 ];
 
-@NgModule({ 
+@NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })

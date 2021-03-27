@@ -1,25 +1,5 @@
-<div>
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">Games</a>
-    <div class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a routerLink="chat" class="nav-link">Chat</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="list" class="nav-link">List</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="user/profile" class="nav-link">Profile</a>
-      </li>
-    </div>
-  </nav>
+<app-navigation></app-navigation>
 
-  <div class="container mt-3">
-    <h2>{{ title }}</h2>
-
-
-
+<div class="container p-4">
     <router-outlet></router-outlet>
-
-  </div>
 </div>

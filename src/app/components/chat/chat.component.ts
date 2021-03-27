@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Message } from '../../classes/message';
+import { Message } from '../../models/message/message';
 import { MessageFireService } from './../../services/message/message-fire.service';
 import { MessageRealService } from './../../services/message/message-real.service';
 import { UserService } from './../../services/user/user.service';
@@ -23,7 +23,6 @@ export class ChatComponent implements OnInit {
     this.MyService.Create(this.message).then(() => {
       console.log('se envio el msj FIRE');
     });
-    console.log("dfdf");
     
     this.MyRealService.CreateOne(this.message).then(() => {
       console.log('se envio el msj REAL');
