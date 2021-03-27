@@ -8,8 +8,8 @@ import { ListComponent } from './pages/list/list.component';
 import { UserComponent } from './pages/user/user.component';
 
 import { FormsModule } from '@angular/forms';
-import {AngularFireModule} from '@angular/fire'
-import { environment } from 'src/environments/environment';
+//import {AngularFireModule} from '@angular/fire'
+//import { environment } from 'src/environments/environment';
 import { IndexComponent } from './pages/index/index.component';
 
 @NgModule({
@@ -24,7 +24,7 @@ import { IndexComponent } from './pages/index/index.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    //AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],
   bootstrap: [AppComponent]
