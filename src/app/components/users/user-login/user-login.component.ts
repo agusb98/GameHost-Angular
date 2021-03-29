@@ -4,16 +4,13 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
-  selector: 'app-user-signup',
-  templateUrl: './user-signup.component.html',
-  styleUrls: ['./user-signup.component.css'],
+  selector: 'app-user-login',
+  templateUrl: './user-login.component.html',
+  styleUrls: ['./user-login.component.css'],
   providers:[AuthService]
 })
-export class UserSignupComponent implements OnInit {
-
-  signupForm = new FormGroup({
-    name: new FormControl(''),
-    surname: new FormControl(''),
+export class UserLoginComponent implements OnInit {
+  loginForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
   });
@@ -23,13 +20,11 @@ export class UserSignupComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async onSignUp(){
-    const { email, password } = this.signupForm.value;
+  async onLogin() {
+    const { email, password } = this.loginForm.value;
     try {
-      const user = await this.authService.SignUp(email, password);
+      const user = await this.authService.Login(email, password); 
       //Redirect to homepage
-      console.log(user);
-      
       if(user){ this.router.navigate(['/index']);  }
     } 
     catch (error) { console.log(error); }

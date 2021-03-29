@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { getDefaultCompilerOptions } from 'typescript';
 
 import { Game } from '../../models/game/game'
 
@@ -17,19 +18,11 @@ export class GameService {
     this.referenceToCollection = bd.collection(this.ruthOfCollection);
   }
 
-  Create(game: Game): any {
-    return this.referenceToCollection.add({ ...game });
+  searchCharacters(query = '', page = 1){
+    
   }
 
-  GetAll(): AngularFirestoreCollection<Game> {
-    return this.referenceToCollection;
-  }
+  getDetails(id: number){
 
-  Delete(id: any): Promise<void> {
-    return this.referenceToCollection.doc(id).delete();
-  }
-
-  Update(id: any, datos: any): Promise<void> {
-    return this.referenceToCollection.doc(id).update(datos);
   }
 }
