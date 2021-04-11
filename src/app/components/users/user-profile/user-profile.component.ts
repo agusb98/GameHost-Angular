@@ -14,5 +14,7 @@ export class UserProfileComponent implements OnInit {
 
   async ngOnInit() {
     this.user = await this.authService.user;
+    console.log(this.user);
+    //TODO: why y cant see user
   }
 }

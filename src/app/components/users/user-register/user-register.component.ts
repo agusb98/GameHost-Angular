@@ -4,12 +4,11 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
-  selector: 'app-user-signup',
-  templateUrl: './user-signup.component.html',
-  styleUrls: ['./user-signup.component.css'],
-  providers:[AuthService]
+  selector: 'app-user-register',
+  templateUrl: './user-register.component.html',
+  styleUrls: ['./user-register.component.css']
 })
-export class UserSignupComponent implements OnInit {
+export class UserRegisterComponent {
 
   signupForm = new FormGroup({
     name: new FormControl(''),
@@ -20,18 +19,15 @@ export class UserSignupComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit(): void {
-  }
-
-  async onSignUp(){
+  async onRegister() {
     const { email, password } = this.signupForm.value;
     try {
-      const user = await this.authService.SignUp(email, password);
+      const user = await this.authService.register(email, password);
       //Redirect to homepage
       console.log(user);
-      
-      if(user){ this.router.navigate(['/index']);  }
-    } 
+
+      if (user) { this.router.navigate(['/home']); }
+    }
     catch (error) { console.log(error); }
   }
 }

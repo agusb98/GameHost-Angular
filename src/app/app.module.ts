@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire'
 import { environment } from 'src/environments/environment';
-import { IndexComponent } from './components/index/index.component';
 import { UserProfileComponent } from './components/users/user-profile/user-profile.component';
 import { GameListComponent } from './components/games/game-list/game-list.component';
 
@@ -18,19 +17,21 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { UserLoginComponent } from './components/users/user-login/user-login.component';
-import { UserSignupComponent } from './components/users/user-signup/user-signup.component';
 import { GameDetailsComponent } from './components/games/game-details/game-details.component';
+import { UserRegisterComponent } from './components/users/user-register/user-register.component';
+import { ToastrModule } from 'ngx-toastr';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    IndexComponent,
     UserProfileComponent,
     GameListComponent,
     NavigationComponent,
     UserLoginComponent,
-    UserSignupComponent,
     GameDetailsComponent,
+    UserRegisterComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +40,11 @@ import { GameDetailsComponent } from './components/games/game-details/game-detai
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+    })
   ],
   providers: [
     GameService,

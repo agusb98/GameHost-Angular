@@ -25,7 +25,7 @@ export class UserLoginComponent implements OnInit {
     try {
       const user = await this.authService.Login(email, password); 
       //Redirect to homepage
-      if(user){ this.router.navigate(['/index']);  }
+      if(user){ this.router.navigate(['/home']);  }
     } 
     catch (error) { console.log(error); }
   }

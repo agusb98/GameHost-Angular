@@ -16,14 +16,14 @@ export class NavigationComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   async ngOnInit() {
-    this.user = await this.authService.GetCurrentuser();
+    this.user = await this.authService.getCurrentuser();
     
     if (this.user) { this.isLogged = true; }
   }
 
   async onLogout(){
     try {
-      await this.authService.Logout();
+      await this.authService.logout();
     } 
     catch (error) { console.log(error); }
   }

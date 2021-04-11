@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from 'src/app/models/user/user';
 import { first } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -10,33 +11,41 @@ export class AuthService {
 
   public user: User = new User();
 
-  constructor(public afAuth: AngularFireAuth) { }
+  constructor(
+    public afAuth: AngularFireAuth,
+    private toastrService: ToastrService
+  ) { }
 
   async Login(email: string, password: string) {
     try {
-      const result = await this.afAuth.signInWithEmailAndPassword(email, password);
-      return result;
+      const user = await this.afAuth.signInWithEmailAndPassword(email, password);
+      this.toastrService.success('Ingreso con Exito', 'Iniciar Sesión');
+      return user;
     }
-    catch (error) { console.log(error); }
+    catch (error) { this.toastrService.error('Email/Contraseña Incorrecto', 'Iniciar Sesión'); }
     return;
   }
 
-  async SignUp(email: string, password: string) {
+  async register(email: string, password: string) {
     try {
-      const result = await this.afAuth.createUserWithEmailAndPassword(email, password);
-      return result;
+      const user = await this.afAuth.createUserWithEmailAndPassword(email, password);
+      this.toastrService.success('Bienvenido!', 'Registro de Usuario');
+      return user;
     }
-    catch (error) { console.log(error); }
+    catch (error) { this.toastrService.error(error.message, 'Registro de Usuario'); }
     return;
   }
 
-  async Logout() {
-    try { await this.afAuth.signOut(); }
-    catch (error) { console.log(error); }
+  async logout() {
+    try {
+      await this.afAuth.signOut();
+      this.toastrService.success('Sesion Cerrada con Exito', 'Salir');
+    }
+    catch (error) { this.toastrService.error(error.message, 'Cerrar Sesión'); }
     return;
   }
 
-  async GetCurrentuser() {
+  async getCurrentuser() {
     try {
       return this.afAuth.authState.pipe(first()).toPromise();
     }
