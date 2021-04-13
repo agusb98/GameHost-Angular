@@ -13,8 +13,6 @@ export class UserProfileComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   async ngOnInit() {
-    this.user = await this.authService.user;
-    console.log(this.user);
-    //TODO: why y cant see user
+    this.user = await this.authService.getCurrentuser();
   }
 }

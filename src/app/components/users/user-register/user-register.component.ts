@@ -10,9 +10,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class UserRegisterComponent {
 
-  signupForm = new FormGroup({
-    name: new FormControl(''),
-    surname: new FormControl(''),
+  registerForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
   });
@@ -20,7 +18,7 @@ export class UserRegisterComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   async onRegister() {
-    const { email, password } = this.signupForm.value;
+    const { email, password } = this.registerForm.value;
     try {
       const user = await this.authService.register(email, password);
       //Redirect to homepage

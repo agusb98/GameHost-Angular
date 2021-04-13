@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -7,26 +7,26 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
   styleUrls: ['./user-login.component.css'],
-  providers:[AuthService]
+  providers: [AuthService]
 })
-export class UserLoginComponent implements OnInit {
+export class UserLoginComponent {
   loginForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
   });
 
-  constructor(private authService: AuthService, private router: Router) { }
-
-  ngOnInit(): void {
-  }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   async onLogin() {
     const { email, password } = this.loginForm.value;
     try {
-      const user = await this.authService.Login(email, password); 
+      const user = await this.authService.login(email, password);
       //Redirect to homepage
-      if(user){ this.router.navigate(['/home']);  }
-    } 
-    catch (error) { console.log(error); }
+      if (user) { this.router.navigate(['home']); }
+    }
+    catch (error) { }
   }
 }

@@ -17,54 +17,49 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-          <!-- <li class="nav-item">
-            <a class="nav-link" routerLink="/chat" routerLinkActive="active"
-              ><i class="fa fa-comments-o"></i> Chat</a
-            >
-          </li> -->
-          <!-- <li class="nav-item" *ngIf="isLogged">
+          <li class="nav-item">
             <a class="nav-link" routerLink="/games" routerLinkActive="active"
               ><i class="fa fa-gamepad"></i> Games</a
             >
-          </li> -->
-          <li class="nav-item" *ngIf="!isLogged">
-            <a
-              class="nav-link"
-              routerLink="/user/register"
-              routerLinkActive="active"
-              ><i class="fa fa-user"></i> Register</a
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/who-am-i" routerLinkActive="active"
+              ><i class="fa fa-info-circle"></i> Who am I</a
             >
           </li>
-          <li class="nav-item" *ngIf="!isLogged">
-            <a
+          <ul *ngIf="user$ | async as user$; else login">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a
+                class="nav-link"
+                routerLink="/user/chat"
+                routerLinkActive="active"
+                ><i class="fa fa-comments-o"></i> Chat</a
+              >
+              </li>
+              <a
               class="nav-link"
-              href="#"
-              routerLink="/user/login"
+              routerLink="/user/logout"
               routerLinkActive="active"
-              ><i class="fa fa-sign-in"></i> Login</a
-            >
-          </li>
-          <li class="nav-item" *ngIf="isLogged">
-            <a
-              class="nav-link"
-              routerLink="/user/profile"
-              routerLinkActive="active"
-              ><i class="fas fa-user"></i> Profile</a
-            >
-          </li>
-          <li class="nav-item" *ngIf="isLogged">
-            <a
-              class="nav-link"
-              routerLink="/user/login"
-              routerLinkActive="active"
-              (click)="onLogout()"
               ><i class="fa fa-sign-out"></i> Logout</a
             >
-          </li>
-          <li class="nav-item" *ngIf="isLogged">
-            <a class="nav-link"> {{ user?.email }}</a>
-          </li>
+            <a class="nav-link disabled"> {{ user$.email }}</a>
+            </ul>
+          </ul>
         </ul>
+
+        <ng-template #login>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                routerLink="/user/login"
+                routerLinkActive="active"
+                ><i class="fa fa-sign-in"></i> Login</a
+              >
+            </li>
+          </ul>
+        </ng-template>
       </div>
     </div>
   </div>

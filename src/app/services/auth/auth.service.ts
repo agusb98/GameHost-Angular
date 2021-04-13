@@ -16,7 +16,7 @@ export class AuthService {
     private toastrService: ToastrService
   ) { }
 
-  async Login(email: string, password: string) {
+  async login(email: string, password: string) {
     try {
       const user = await this.afAuth.signInWithEmailAndPassword(email, password);
       this.toastrService.success('Ingreso con Exito', 'Iniciar Sesión');

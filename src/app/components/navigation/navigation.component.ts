@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthService } from './../../services/auth/auth.service';
 
 @Component({
@@ -8,23 +8,8 @@ import { AuthService } from './../../services/auth/auth.service';
   styleUrls: ['./navigation.component.css'],
   providers: [AuthService]
 })
-export class NavigationComponent implements OnInit {
-  
-  public isLogged = false;
-  public user: any;
+export class NavigationComponent {
+  public user$: Observable<any> = this.authService.afAuth.user;
 
-  constructor(private authService: AuthService, private router: Router) { }
-
-  async ngOnInit() {
-    this.user = await this.authService.getCurrentuser();
-    
-    if (this.user) { this.isLogged = true; }
-  }
-
-  async onLogout(){
-    try {
-      await this.authService.logout();
-    } 
-    catch (error) { console.log(error); }
-  }
+  constructor(private authService: AuthService) { }
 }

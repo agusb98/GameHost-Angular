@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire'
 import { environment } from 'src/environments/environment';
-import { UserProfileComponent } from './components/users/user-profile/user-profile.component';
 import { GameListComponent } from './components/games/game-list/game-list.component';
 
 import { GameService } from './services/game/game.service'
@@ -17,21 +16,30 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { UserLoginComponent } from './components/users/user-login/user-login.component';
-import { GameDetailsComponent } from './components/games/game-details/game-details.component';
 import { UserRegisterComponent } from './components/users/user-register/user-register.component';
 import { ToastrModule } from 'ngx-toastr';
-import { HomeComponent } from './components/home/home.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { HomeComponent } from './pages/home/home.component';
+import { WhoAmIComponent } from './pages/who-am-i/who-am-i.component';
+import { BoardComponent } from './components/games/tic-tac-toe/board/board.component';
+import { SquareComponent } from './components/games/tic-tac-toe/square/square.component';
+import { ChatsComponent } from './components/chats/chats.component';
+import { PiedraPapelTijeraComponent } from './components/games/piedra-papel-tijera/piedra-papel-tijera.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserProfileComponent,
     GameListComponent,
     NavigationComponent,
     UserLoginComponent,
-    GameDetailsComponent,
     UserRegisterComponent,
     HomeComponent,
+    ContactComponent,
+    WhoAmIComponent,
+    ChatsComponent,
+    BoardComponent,
+    SquareComponent,
+    PiedraPapelTijeraComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +56,7 @@ import { HomeComponent } from './components/home/home.component';
   ],
   providers: [
     GameService,
-    AuthService
+    AuthService,
   ],
   bootstrap: [AppComponent]
 })
