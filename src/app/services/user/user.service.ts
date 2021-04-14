@@ -11,12 +11,8 @@ export class UserService {
 
   ruthOfCollection = '/user';
   referenceToCollection: AngularFirestoreCollection<User>;
-  selectedUser: User = new User();
-  
-  public vigentUser: string;
   
   constructor(private bd: AngularFirestore) {
-    this.vigentUser = 'someone';
     this.referenceToCollection = bd.collection(this.ruthOfCollection);
   }
 

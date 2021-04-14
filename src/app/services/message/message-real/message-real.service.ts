@@ -13,7 +13,12 @@ export class MessageRealService {
     this.referenceToCollection = db.list(this.rutaDeLaColeccion);
   }
 
-  addOne(message: Message): any {
-    return this.referenceToCollection.push(message);
+  public async addOne(message: Message) {
+    try {
+      const result = await this.referenceToCollection.push(message);
+      return result;
+    }
+    catch (error) { console.log('Error al intentar enviar Mensaje'); }
+    return;
   }
 }

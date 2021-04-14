@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Message } from 'src/app/models/message/message';
 import { MessageFireService } from 'src/app/services/message/message-fire/message-fire.service';
 import { MessageRealService } from 'src/app/services/message/message-real/message-real.service';
-import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-chats',
@@ -15,20 +14,14 @@ export class ChatsComponent {
 
   constructor(
     private messageFireService: MessageFireService,
-    private messageRealService: MessageRealService,
-    private userService: UserService
+    private messageRealService: MessageRealService
   ) {
+    //TODO  guardar info del usuario que mando..
     this.message = new Message();
-    this.message.from = this.userService.selectedUser.email;
   }
 
   public send() {
-    this.messageFireService.addOne(this.message).then(() => {
-      console.log("Se Envio el message");
-    });
-
-    this.messageRealService.addOne(this.message).then(() => {
-      console.log("Se Envio el real");
-    });
+    this.messageFireService.addOne(this.message);
+    this.messageRealService.addOne(this.message);    
   }
 }
