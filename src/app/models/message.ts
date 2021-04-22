@@ -1,7 +1,7 @@
 export class Message {
     id: string = '';
-    from: string = '';
+    from: any = '';
     message: string = '';
-    dateTime: Date = new Date();
+    time: string = '';
     status: boolean = false;
 }

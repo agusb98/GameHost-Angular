@@ -13,7 +13,8 @@ import { PiedraPapelTijeraComponent } from './piedra-papel-tijera/piedra-papel-t
   ],
   declarations: [
     BoardComponent, 
-    SquareComponent, PiedraPapelTijeraComponent
+    SquareComponent, 
+    PiedraPapelTijeraComponent
   ]
 })
 export class GameModule { }

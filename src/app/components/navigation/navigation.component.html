@@ -29,14 +29,6 @@
           </li>
           <ul *ngIf="user$ | async as user$; else login">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a
-                class="nav-link"
-                routerLink="/user/chat"
-                routerLinkActive="active"
-                ><i class="fa fa-comments-o"></i> Chat</a
-              >
-              </li>
               <a
               class="nav-link"
               routerLink="/user/logout"

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-user-login',
@@ -24,8 +24,10 @@ export class UserLoginComponent {
     const { email, password } = this.loginForm.value;
     try {
       const user = await this.authService.login(email, password);
-      //Redirect to homepage
-      if (user) { this.router.navigate(['home']); }
+      if (user) { 
+        localStorage.setItem('email', email); //Save user data in the local storage
+        this.router.navigate(['home']);   //Redirect to homepage
+      }
     }
     catch (error) { }
   }

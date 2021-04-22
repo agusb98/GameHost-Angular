@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Message } from 'src/app/models/message/message';
-import { MessageFireService } from 'src/app/services/message/message-fire/message-fire.service';
-import { MessageRealService } from 'src/app/services/message/message-real/message-real.service';
+import { Observable } from 'rxjs';
+import { Message } from 'src/app/models/message';
+import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
   selector: 'app-chats',
@@ -10,18 +10,32 @@ import { MessageRealService } from 'src/app/services/message/message-real/messag
 })
 export class ChatsComponent {
 
-  public message: Message
+  message: Message = new Message();
+  chat: Observable<any[]>;
+  email: any = localStorage.getItem('email');
 
-  constructor(
-    private messageFireService: MessageFireService,
-    private messageRealService: MessageRealService
-  ) {
-    //TODO  guardar info del usuario que mando..
-    this.message = new Message();
+  constructor(private chatService: ChatService) {
+    this.chat = chatService.getAll().valueChanges();
   }
 
-  public send() {
-    this.messageFireService.addOne(this.message);
-    this.messageRealService.addOne(this.message);    
+  send() {
+    this.message.time = new Date().toDateString();
+    this.message.from = localStorage.getItem('email');
+
+    if (this.checkMessage(this.message)) {
+      this.chatService.createOne(this.message);
+      this.clear();
+    }
+  }
+
+  public checkMessage(message: Message): boolean {
+    if (message.message.length > 0) {
+      return true;
+    }
+    return false;
+  }
+
+  clear() {
+    this.message.message = '';
   }
 }

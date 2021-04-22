@@ -1,9 +1,5 @@
-<h1>Current Player: {{ player }}</h1>
-
-<button class="btn btn-info btn-lg btn-block" (click)="newGame()">
-  Start new Game
-</button>
-
+<div class="col-md-4">
+<h1>Jugador: {{ player }}</h1>
 <h2 *ngIf="winner">Player {{ winner }} won the game!</h2>
 
 <main>
@@ -14,3 +10,9 @@
   >
   </app-square>
 </main>
+
+<button class="btn btn-info btn-lg btn-block" (click)="newGame()">
+  Start new Game
+</button>
+</div>
+<app-chats></app-chats>

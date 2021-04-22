@@ -2,3 +2,11 @@
     width: 100px;
     height: 90px;
 }
+
+#principalContainer{
+    background-color: transparent;
+}
+
+.pDescription{
+    color: whitesmoke
+}

@@ -1,2 +1,42 @@
-<input type="text" [(ngModel)]="message.message">
-<button (click)="send()">send</button>
+<div class="col-md-8 col-xl-6 chat">
+  <div class="card">
+    <div class="card-body msg_card_body">
+      <div *ngFor="let message of chat | async">
+        <div *ngIf="message.from == email">
+          <div class="d-flex justify-content-end mb-4">
+            <div class="msg_container_send">
+              <span class="msg_container_from">{{ message.from }}</span
+              ><br />
+              {{ message.message }}
+              <span class="msg_time_send">{{ message.time }}</span>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="message.from != email">
+          <div class="d-flex justify-content-start mb-4">
+            <div class="msg_container">
+              <span class="msg_container_from">{{ message.from }}</span
+              ><br />
+              {{ message.message }}
+              <span class="msg_time">{{ message.time }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Type.."
+        [(ngModel)]="message.message"
+      />
+      <div class="input-group-append">
+        <button class="btn btn-outline-success" type="button" (click)="send()">
+          <div class="sendText">Send</div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
