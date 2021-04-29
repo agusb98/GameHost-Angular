@@ -24,7 +24,7 @@ export class PiedraPapelTijeraComponent {
     const actionPC = this.playPC();
     this.statusGame = 'You: ' + actionUser + ' vs ' + 'PC: ' + actionPC;
     this.winner(actionUser + actionPC);
-    //this.scoreService.add();
+    this.scoreService.add(this.newScore);
   }
 
   playPC() {

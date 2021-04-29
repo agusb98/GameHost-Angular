@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AuthService {
 
   public user: User = new User();
+  public isLogged: boolean = false;
 
   constructor(
     public afAuth: AngularFireAuth,
@@ -19,6 +20,7 @@ export class AuthService {
   async login(email: string, password: string) {
     try {
       const user = await this.afAuth.signInWithEmailAndPassword(email, password);
+      this.isLogged = true; //flag about user signin
       this.toastrService.success('Ingreso con Exito', 'Iniciar Sesión');
       return user;
     }
@@ -29,6 +31,7 @@ export class AuthService {
   async register(email: string, password: string) {
     try {
       const user = await this.afAuth.createUserWithEmailAndPassword(email, password);
+      this.isLogged = true; //flag about user signin
       this.toastrService.success('Bienvenido!', 'Registro de Usuario');
       return user;
     }
@@ -39,6 +42,7 @@ export class AuthService {
   async logout() {
     try {
       await this.afAuth.signOut();
+      this.isLogged = false; //flag about user logout
       this.toastrService.success('Sesion Cerrada con Exito', 'Salir');
     }
     catch (error) { this.toastrService.error(error.message, 'Cerrar Sesión'); }
