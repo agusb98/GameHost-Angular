@@ -19,7 +19,6 @@ export class ChatsComponent {
   }
 
   send() {
-    this.message.time = new Date().toDateString();
     this.message.from = localStorage.getItem('email');
 
     if (this.checkMessage(this.message)) {

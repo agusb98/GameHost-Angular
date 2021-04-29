@@ -27,7 +27,7 @@ export class ChatService {
     }
 
     getAll(): AngularFirestoreCollection<Message> {
-        return this.referenceToCollection;
+        return this.bd.collection<Message>('chat', ref => ref.orderBy('time', 'asc'));
     }
 
     filterByGame(game: string){

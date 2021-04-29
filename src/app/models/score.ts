@@ -1,6 +1,9 @@
 export class Score {
-    public user: any;
     public game: string = "";
-    public score: number = 0;
-    public date = new Date();
+    public user: any = "";
+    public scores: number = 0;
+    public wons: number = 0;
+    public losses: number = 0;
+    public ties: number = 0;
+    public time_updated = new Date()
 }

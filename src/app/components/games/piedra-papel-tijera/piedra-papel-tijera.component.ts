@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Score } from 'src/app/models/score';
-import { PiedraPapelTijeraService } from 'src/app/services/games/piedra-papel-tijera.service';
+import { ScoreService } from 'src/app/services/score.service';
 
 @Component({
   selector: 'app-piedra-papelo-tijera',
@@ -13,21 +13,18 @@ export class PiedraPapelTijeraComponent {
   statusGame: string = '';
   resultGame: string = 'juegas primero...';
   newScore: Score = new Score();
-  list = this.gameService.getAll().valueChanges();
+  list = this.scoreService.getAll().valueChanges();
 
-  constructor(
-    private gameService: PiedraPapelTijeraService,
-    ) { 
-      this.newScore.game = 'piedra-papel-tijera';
-      this.newScore.user = 'agusb98';
-    }
+  constructor(private scoreService: ScoreService) {
+    this.newScore.user = localStorage.getItem('email');
+    this.newScore.game = 'PIEDRA-PAPEL-TIJERA';
+  }
 
-  play(actionUser: string) {        
+  play(actionUser: string) {
     const actionPC = this.playPC();
     this.statusGame = 'You: ' + actionUser + ' vs ' + 'PC: ' + actionPC;
-    this.winner(actionPC + actionUser);
-    //this.saveScore();
-    localStorage.setItem('scores', JSON.stringify(this.newScore));
+    this.winner(actionUser + actionPC);
+    //this.scoreService.add();
   }
 
   playPC() {
@@ -45,7 +42,8 @@ export class PiedraPapelTijeraComponent {
         {
           this.resultGame = "You Win";
           this.pointsUser += 1;
-          this.newScore.score += 10;
+          this.newScore.scores = 10;
+          this.newScore.wons = 1;
         }
         break;
       //Loss
@@ -55,7 +53,8 @@ export class PiedraPapelTijeraComponent {
         {
           this.resultGame = "PC win";
           this.pointsPC += 1;
-          this.newScore.score -= 5;
+          this.newScore.scores = 5;
+          this.newScore.losses = 1;
         }
         break;
       //Draw
@@ -64,16 +63,10 @@ export class PiedraPapelTijeraComponent {
       case 'RocaRoca':
         {
           this.resultGame = "Nobody win";
-          this.newScore.score += 1;
+          this.newScore.scores = 1;
+          this.newScore.ties = 1;
         }
         break;
     }
-  }
-
-  /**
-   * Save score of user vs PC in database firebase
-   */
-  saveScore() {
-    this.gameService.addScore(this.newScore);
   }
 }

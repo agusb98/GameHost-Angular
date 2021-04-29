@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Score } from 'src/app/models/score';
 import { AuthService } from 'src/app/services/auth.service';
+import { ScoreService } from 'src/app/services/score.service';
 
 @Component({
   selector: 'app-user-register',
@@ -15,7 +17,11 @@ export class UserRegisterComponent {
     password: new FormControl(''),
   });
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private authService: AuthService, 
+    private router: Router, 
+    private scoreService: ScoreService
+    ) { }
 
   async onRegister() {
     const { email, password } = this.registerForm.value;

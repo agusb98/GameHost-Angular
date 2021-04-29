@@ -17,13 +17,13 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { UserLoginComponent } from './components/users/user-login/user-login.component';
 import { UserRegisterComponent } from './components/users/user-register/user-register.component';
 import { ToastrModule } from 'ngx-toastr';
-import { ContactComponent } from './components/contact/contact.component';
 import { HomeComponent } from './components/home/home.component';
 import { WhoAmIComponent } from './components/who-am-i/who-am-i.component';
 import { BoardComponent } from './components/games/tic-tac-toe/board/board.component';
 import { SquareComponent } from './components/games/tic-tac-toe/square/square.component';
 import { ChatsComponent } from './components/chats/chats.component';
 import { PiedraPapelTijeraComponent } from './components/games/piedra-papel-tijera/piedra-papel-tijera.component';
+import { SurveyComponent } from './components/survey/survey.component';
 
 @NgModule({
   declarations: [
@@ -33,12 +33,12 @@ import { PiedraPapelTijeraComponent } from './components/games/piedra-papel-tije
     UserLoginComponent,
     UserRegisterComponent,
     HomeComponent,
-    ContactComponent,
     WhoAmIComponent,
     ChatsComponent,
     BoardComponent,
     SquareComponent,
-    PiedraPapelTijeraComponent
+    PiedraPapelTijeraComponent,
+    SurveyComponent
   ],
   imports: [
     BrowserModule,

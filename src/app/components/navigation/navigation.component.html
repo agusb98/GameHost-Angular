@@ -25,12 +25,18 @@
           <ul *ngIf="user$ | async as user$; else login">
             <ul class="navbar-nav ml-auto">
               <a
-              class="nav-link"
-              routerLink="/user/logout"
-              routerLinkActive="active"
-              ><i class="fa fa-sign-out"></i> Logout</a
-            >
-            <a class="nav-link disabled"> {{ user$.email }}</a>
+                class="nav-link"
+                routerLink="/user/logout"
+                routerLinkActive="active"
+                ><i class="fa fa-sign-out"></i> Logout</a
+              >
+              <a
+                class="nav-link"
+                routerLink="/user/survey"
+                routerLinkActive="active"
+                ><i class="fa fa-poll-h"></i> Survey</a
+              >
+              <a class="nav-link disabled"> {{ user$.email }}</a>
             </ul>
           </ul>
         </ul>

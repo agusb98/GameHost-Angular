@@ -12,14 +12,15 @@ export class ScoreService {
   private referenceToCollection: AngularFirestoreCollection<Score>;
   private referenceSorted: AngularFirestoreCollection<Score>;
 
-  constructor(private bd: AngularFirestore, private toastr: ToastrService) {
-    this.referenceToCollection = bd.collection(this.ruthOfCollection);
-    this.referenceSorted = bd.collection<Score>('scores', ref => ref.orderBy('score', 'desc'));
+  constructor(private db: AngularFirestore, private toastr: ToastrService) {
+    this.referenceToCollection = db.collection(this.ruthOfCollection);
+    this.referenceSorted = db.collection<Score>('scores', ref => ref.orderBy('date_created', 'desc'));
   }
 
-  async addScore(score: Score) {
+  async add(score: Score) {
     try {
       const result = await this.referenceToCollection.add({ ...score });  //  llaves es objeto, 3 puntitos es dinamico
+      this.toastr.success('Results saved successfully', 'Status Score');
       return result;
     }
     catch (error) { this.toastr.error('Error at the moment to save score..', 'Status Score'); }
@@ -28,5 +29,10 @@ export class ScoreService {
 
   getAll(): AngularFirestoreCollection<Score> {
     return this.referenceToCollection;
-}
+  }
+
+  async getByUser(user: string) {
+    const ref = this.db.collection('scores');
+    
+  }
 }

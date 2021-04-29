@@ -1,0 +1,213 @@
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="acceptTerms()">
+    <div class="row">
+      <div class="col-md-12 mb-5">
+        <h2>SURVEY</h2>
+      </div>
+    </div>
+    <div class="row formulario">
+      <div class="col-md-6 mb-3">
+        <label for="name" class="form-label">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="Enter Name.."
+          formControlName="name"
+        />
+        <small
+          class="invalid"
+          *ngIf="
+            form.controls.name.errors?.required && form.controls.name.touched
+          "
+        >
+          Ingrese Nombre
+        </small>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="surname" class="form-label">Apellido</label>
+        <input
+          type="text"
+          class="form-control"
+          id="surname"
+          placeholder="Enter Surname.."
+          formControlName="surname"
+        />
+        <small
+          class="invalid"
+          *ngIf="
+            form.controls.surname.errors?.required &&
+            form.controls.surname.touched
+          "
+        >
+          Ingrese Apellido
+        </small>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="age" class="form-label">Edad</label>
+        <input
+          type="number"
+          class="form-control"
+          id="age"
+          placeholder="Enter Age.."
+          formControlName="age"
+        />
+        <small
+          class="invalid"
+          *ngIf="
+            form.controls.age.errors?.required && form.controls.age.touched
+          "
+        >
+          Ingrese Edad
+        </small>
+        <small
+          class="invalid"
+          *ngIf="
+            form.controls.age.errors?.min ||
+            (form.controls.age.errors?.max && form.controls.age.touched)
+          "
+        >
+          Edad Inválida, Rango entre [18 - 99]
+        </small>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="phone_number" class="form-label">Numero de Telefono</label>
+        <input
+          type="number"
+          class="form-control"
+          id="phone_number"
+          placeholder="Enter Phone Number.."
+          formControlName="phone_number"
+        />
+        <small
+          class="invalid"
+          *ngIf="
+            form.controls.phone_number.errors?.required &&
+            form.controls.phone_number.touched
+          "
+        >
+          Ingrese Numero
+        </small>
+        <small
+          class="invalid"
+          *ngIf="
+            form.controls.phone_number.errors?.min ||
+            (form.controls.phone_number.errors?.max &&
+              form.controls.phone_number.touched)
+          "
+        >
+          Numero invalido: maximo 10 digitos
+        </small>
+      </div>
+      <div class="col-md-12 mb-5">
+        <label for="question_01" class="form-label">Juego Preferido</label>
+        <input
+          type="text"
+          class="form-control"
+          id="question_01"
+          placeholder="Enter Preferred Game.."
+          formControlName="question_01"
+        />
+        <small
+          class="invalid"
+          *ngIf="
+            form.controls.question_01.errors?.required &&
+            form.controls.question_01.touched
+          "
+        >
+          La pregunta es requerida
+        </small>
+      </div>
+      <div class="col-md-12 mb-5">
+        <label for="question_02" class="form-label"
+          >Momento preferido del Dia</label
+        >
+        <select
+          class="form-select"
+          id="question_02"
+          formControlName="question_02"
+        >
+          <option value="" disabled>Moment..</option>
+          <option value="mañana">Mañana</option>
+          <option value="tarde">Tarde</option>
+          <option value="noche">Noche</option>
+        </select>
+        <small
+          class="invalid"
+          *ngIf="
+            form.controls.question_02.errors?.required &&
+            form.controls.question_02.touched
+          "
+        >
+          La pregunta es requerida
+        </small>
+      </div>
+      <div class="col-md-12 mb-5">
+        <label for="question_03" class="form-label"
+          >Cantidad de horas al dia</label
+        >
+        <div class="div-radio">
+          <input
+            type="radio"
+            value="Entre 1 y 2 horas"
+            id="question_03"
+            formControlName="question_03"
+          />
+          Entre uno o dos horas
+        </div>
+        <div class="div-radio">
+          <input
+            type="radio"
+            value="Entre 2 y 3 horas"
+            id="question_03"
+            formControlName="question_03"
+          />
+          Entre dos o tres horas
+        </div>
+        <div class="div-radio">
+          <input
+            type="radio"
+            value="Entre 3 o más horas"
+            id="question_03"
+            formControlName="question_03"
+          />
+          Entre tres o más horas
+        </div>
+        <small
+          class="invalid"
+          *ngIf="
+            form.controls.question_03.errors?.required &&
+            form.controls.question_03.touched
+          "
+        >
+          La pregunta es requerida
+        </small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 mb-5">
+        <div class="form-check">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="terms"
+            formControlName="terms"
+          />
+          <label for="terms" class="form-check-label" for="terms">
+            Aceptar términos y condiciones
+          </label>
+        </div>
+      </div>
+      <div class="col-md-12 d-grid gap-2">
+        <button
+          type="submit"
+          class="btn btn-primary btn-block"
+          [disabled]="form.invalid || !form.controls.terms.value"
+          style="cursor: pointer"
+        >
+          Aceptar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
