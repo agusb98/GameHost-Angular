@@ -53,7 +53,7 @@ export class AuthService {
     try {
       return this.afAuth.authState.pipe(first()).toPromise();
     }
-    catch (error) { console.log(error); }
+    catch (error) { }
     return;
   }
 }

@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'who-am-i', component: WhoAmIComponent },
   { path: 'user', loadChildren: () => import('../app/components/users/user-routing.module').then(m => m.UserRoutingModule) },
-  { path: 'games', loadChildren: () => import('../app/components/games/game-routing.module').then(m => m.GameRoutingModule) },
+  { path: 'games', loadChildren: () => import('./components/game/game-routing.module').then(m => m.GameRoutingModule) },
   { path: '**', component: PageNotFoundComponent },
 ];
 

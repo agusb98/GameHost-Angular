@@ -1,0 +1,30 @@
+p {
+  font-size: 2rem;
+}
+
+.container {
+  width: 600px;
+  margin: 0 auto;
+  background-color: black;
+  border-radius: 25%;
+}
+
+.flex {
+  display: flex;
+  margin: 2rem;
+}
+
+.center {
+  justify-content: center;
+  align-items: baseline;
+}
+
+.middle {
+  justify-content: space-around;
+}
+
+.button-play {
+  margin-top: 40px;
+  margin-left: 75px;
+  width: 250px;
+}

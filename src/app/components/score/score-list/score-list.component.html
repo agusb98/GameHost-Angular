@@ -1,0 +1,27 @@
+<div class="body" id="body">
+  <div class="container">
+    <h1 style="text-align: center">Score List</h1>
+    <table class="table table-dark mydatatable" style="text-align: left">
+      <thead>
+        <tr>
+          <th>Game</th>
+          <th>Score</th>
+          <th>Wons</th>
+          <th>Ties</th>
+          <th>Losses</th>
+          <th>User</th>
+        </tr>
+      </thead>
+      <tbody class="tbodyFilm">
+        <tr *ngFor="let score of listScores$ | async">
+          <td>{{ score.game }}</td>
+          <td>{{ score.score }}</td>
+          <td>{{ score.wons }}</td>
+          <td>{{ score.ties }}</td>
+          <td>{{ score.losses }}</td>
+          <td>{{ score.user }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

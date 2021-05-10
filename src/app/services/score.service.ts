@@ -1,25 +1,18 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { ToastrService } from 'ngx-toastr';
+import { Game } from '../models/game';
 import { Score } from '../models/score';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScoreService {
+  constructor(private db: AngularFirestore, private toastr: ToastrService) { }
 
-  private ruthOfCollection = "/scores";
-  private referenceToCollection: AngularFirestoreCollection<Score>;
-  private referenceSorted: AngularFirestoreCollection<Score>;
-
-  constructor(private db: AngularFirestore, private toastr: ToastrService) {
-    this.referenceToCollection = db.collection(this.ruthOfCollection);
-    this.referenceSorted = db.collection<Score>('scores', ref => ref.orderBy('date_created', 'desc'));
-  }
-
-  async add(score: Score) {
+  async add(score: Score, pathOfCollection: string) {
     try {
-      const result = await this.referenceToCollection.add({ ...score });  //  llaves es objeto, 3 puntitos es dinamico
+      const result = await this.db.collection(pathOfCollection).add({ ...score });  //  llaves es objeto, 3 puntitos es dinamico
       this.toastr.success('Results saved successfully', 'Status Score');
       return result;
     }
@@ -27,12 +20,25 @@ export class ScoreService {
     return;
   }
 
-  getAll(): AngularFirestoreCollection<Score> {
-    return this.referenceToCollection;
-  }
-
-  async getByUser(user: string) {
-    const ref = this.db.collection('scores');
-    
+  getAllByGame(game: string) {
+    try {
+      switch (game) {
+        case 'ticTacToe': {
+          return this.db.collection<Score>('scores-ticTacToe', ref => ref.orderBy('score', 'asc'));
+        }
+        case 'piedraPapelTijera': {
+          return this.db.collection<Score>('scores-piedraPapelTijera', ref => ref.orderBy('score', 'asc'));
+          break;
+        }
+        case 'memotest': {
+          return this.db.collection<Score>('scores-memotest', ref => ref.orderBy('score', 'asc'));
+          break;
+        }
+        case 'simon': {
+          return this.db.collection<Score>('scores-simon', ref => ref.orderBy('score', 'asc'));
+          break;
+        }
+      }
+    } catch (error) { this.toastr.error('Error at the moment to get scores..', 'Status Scores'); }
   }
 }

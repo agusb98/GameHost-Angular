@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Message } from 'src/app/models/message';
 import { ChatService } from 'src/app/services/chat.service';
@@ -8,21 +8,26 @@ import { ChatService } from 'src/app/services/chat.service';
   templateUrl: './chats.component.html',
   styleUrls: ['./chats.component.css']
 })
-export class ChatsComponent {
+export class ChatsComponent implements OnInit {
 
+  @Input() chatName: string;
+
+  chat: Observable<Message[]>;
   message: Message = new Message();
-  chat: Observable<any[]>;
   email: any = localStorage.getItem('email');
 
-  constructor(private chatService: ChatService) {
-    this.chat = chatService.getAll().valueChanges();
+  constructor(private chatService: ChatService) { }
+
+  ngOnInit(): void {
+    this.chat = this.chatService.getAllByGame(this.chatName).valueChanges();
   }
 
   send() {
-    this.message.from = localStorage.getItem('email');
+    this.message.from = this.email;
+    this.message.game = this.chatName;
 
     if (this.checkMessage(this.message)) {
-      this.chatService.createOne(this.message);
+      this.chatService.createOne(this.message, 'chat-' + this.chatName);
       this.clear();
     }
   }

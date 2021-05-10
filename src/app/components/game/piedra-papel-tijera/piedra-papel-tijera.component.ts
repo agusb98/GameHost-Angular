@@ -13,18 +13,18 @@ export class PiedraPapelTijeraComponent {
   statusGame: string = '';
   resultGame: string = 'juegas primero...';
   newScore: Score = new Score();
-  list = this.scoreService.getAll().valueChanges();
 
   constructor(private scoreService: ScoreService) {
     this.newScore.user = localStorage.getItem('email');
-    this.newScore.game = 'PIEDRA-PAPEL-TIJERA';
+    this.newScore.game = 'piedraPapelTijera';
   }
 
   play(actionUser: string) {
     const actionPC = this.playPC();
     this.statusGame = 'You: ' + actionUser + ' vs ' + 'PC: ' + actionPC;
     this.winner(actionUser + actionPC);
-    this.scoreService.add(this.newScore);
+    
+    this.scoreService.add(this.newScore, 'scores-piedraPapelTijera');
   }
 
   playPC() {
@@ -42,7 +42,7 @@ export class PiedraPapelTijeraComponent {
         {
           this.resultGame = "You Win";
           this.pointsUser += 1;
-          this.newScore.scores = 10;
+          this.newScore.score = 10;
           this.newScore.wons = 1;
         }
         break;
@@ -53,7 +53,7 @@ export class PiedraPapelTijeraComponent {
         {
           this.resultGame = "PC win";
           this.pointsPC += 1;
-          this.newScore.scores = 5;
+          this.newScore.score = 5;
           this.newScore.losses = 1;
         }
         break;
@@ -63,7 +63,7 @@ export class PiedraPapelTijeraComponent {
       case 'RocaRoca':
         {
           this.resultGame = "Nobody win";
-          this.newScore.scores = 1;
+          this.newScore.score = 1;
           this.newScore.ties = 1;
         }
         break;

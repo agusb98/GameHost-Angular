@@ -1,0 +1,81 @@
+.title, .info{
+    width: 100%;
+    background: rgba(255, 255, 255, 0);
+    color: #ffffff;
+    padding: 5px;
+    text-align: center;
+}
+
+.tablero{
+    margin-top: 10px;
+   
+    color: white;
+    border: solid white 1px;
+    background: #000000a6;
+}
+
+.cell{
+    width:85px;
+    height:85px;
+    
+    font-size: 30pt;
+    font-family: arial;
+    font-weight: 0.5px;
+    text-align: center;
+    
+    border: solid white 1px
+}
+
+.cell:hover{
+    background: #01eeffb9;
+}
+
+.btnRestart{
+    margin-left: 10px;
+    position: absolute;
+    left: 36%;
+}
+
+.score{
+    width: 60%;
+    height: 10%;
+	border:2px solid white;
+	text-align: center;
+	margin:10px auto; /*top and bottom 20 px and centre it*/
+	font-size: 20px;
+	position: relative;
+	transition: 0.3s ease-in;
+    color: white;
+}
+
+.score:hover{
+	background-color: #323042;
+}
+
+.badge{
+	background-color: #15ff009a;
+    box-shadow: 1px 1px 50px rgba(50, 248, 0, 0.515);
+	padding: 2px 20px;
+	font-size: 15px;
+}
+
+#user-label{
+	position: absolute;
+	top:10px;
+	left: 10px;
+}
+#comp-label{
+	position: absolute;
+	top: 10px;
+	right: 20px;
+}
+
+.resultado{
+	font-size: 40px;
+	text-align: center;
+	color: rgb(255, 255, 255);
+}
+
+.info{
+    font-size: 15px;
+}

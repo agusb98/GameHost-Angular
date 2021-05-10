@@ -1,0 +1,65 @@
+<div class="col-md-5">
+  <p *ngIf="this.inicio" style="color: white" class="mensaje-p">
+    Tiempo: {{ this.tiempo }}
+  </p>
+  <div class="selector-dificultad" *ngIf="dificultad == null">
+    <p class="dificultad-titulo">Seleccione Dificultad</p>
+
+    <button
+      class="btn btn-success btnDificultad"
+      (click)="seleccionaDificultad('facil')"
+    >
+      Facil
+    </button>
+    <button
+      class="btn btn-danger btnDificultad"
+      (click)="seleccionaDificultad('medio')"
+    >
+      Medio
+    </button>
+    <br />
+  </div>
+
+  <div *ngIf="!inicio && dificultad != null" class="resultadoBotones">
+    <div class="botones" *ngIf="!inicio && dificultad != null">
+      <button
+        class="btn btn-outline-success btnEmpezar"
+        (click)="empezarJuego()"
+      >
+        {{ this.btnEmpezar }}
+      </button>
+      <button
+        class="btn btn-outline-warning btnCambiarDificultad"
+        (click)="cambiarDificultad()"
+      >
+        Cambiar dificultad
+      </button>
+    </div>
+    <br />
+    <div class="mensaje" *ngIf="mensaje">
+      <p class="mensaje-p">
+        {{ mensaje }}
+      </p>
+    </div>
+  </div>
+
+  <div id="juego" *ngIf="dificultad != null && dificultad && this.inicio">
+    <div
+      *ngFor="let carta of cartas; index as i"
+      [class]="carta.clase"
+      (click)="voltear(i)"
+    >
+      <img
+        [src]="carta.mostrar ? carta.path : carta.atras"
+        class="carta-imagen"
+        style="width: 6rem; height: 6rem"
+        alt="carta"
+      />
+    </div>
+  </div>
+</div>
+
+<app-chats [chatName]="'memotest'"></app-chats>
+<div class="container-score-list">
+  <app-score-list [gameName]="'memotest'"></app-score-list>
+</div>

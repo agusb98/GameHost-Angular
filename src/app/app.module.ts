@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire'
 import { environment } from 'src/environments/environment';
-import { GameListComponent } from './components/games/game-list/game-list.component';
+import { GameListComponent } from './components/game/game-list/game-list.component';
 
 import { AuthService } from './services/auth.service';
 
@@ -19,11 +19,15 @@ import { UserRegisterComponent } from './components/users/user-register/user-reg
 import { ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './components/home/home.component';
 import { WhoAmIComponent } from './components/who-am-i/who-am-i.component';
-import { BoardComponent } from './components/games/tic-tac-toe/board/board.component';
-import { SquareComponent } from './components/games/tic-tac-toe/square/square.component';
 import { ChatsComponent } from './components/chats/chats.component';
-import { PiedraPapelTijeraComponent } from './components/games/piedra-papel-tijera/piedra-papel-tijera.component';
+import { PiedraPapelTijeraComponent } from './components/game/piedra-papel-tijera/piedra-papel-tijera.component';
 import { SurveyComponent } from './components/survey/survey.component';
+import { HttpClientModule } from '@angular/common/http';
+import { TicTacToeComponent } from './components/game/tic-tac-toe/tic-tac-toe.component';
+import { MemotestComponent } from './components/game/memotest/memotest.component';
+import { ScoreListComponent } from './components/score/score-list/score-list.component';
+import { SimonComponent } from './components/game/simon/simon.component';
+import { GameButtonComponent } from './components/game/simon/game-button/game-button.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +39,16 @@ import { SurveyComponent } from './components/survey/survey.component';
     HomeComponent,
     WhoAmIComponent,
     ChatsComponent,
-    BoardComponent,
-    SquareComponent,
     PiedraPapelTijeraComponent,
-    SurveyComponent
+    TicTacToeComponent,
+    MemotestComponent,
+    SurveyComponent,
+    ScoreListComponent,
+    SimonComponent,
+    GameButtonComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -54,7 +62,7 @@ import { SurveyComponent } from './components/survey/survey.component';
     })
   ],
   providers: [
-    AuthService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

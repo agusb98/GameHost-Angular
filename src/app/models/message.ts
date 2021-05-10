@@ -1,7 +1,7 @@
 let date: Date = new Date();
 
 export class Message {
-    id: string = '';
+    game: string = '';
     from: any = '';
     message: string = '';
     date: string = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay();
